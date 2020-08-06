@@ -1,17 +1,10 @@
-control 'nginx' do
-  describe package('nginx') do
-    it { should be_installed }
-  end
-  describe service('nginx') do
+control 'vm up and running' do
+  describe azurerm_virtual_machine(resource_group: 'myResourceGroup2', name: 'myVM') do
+    it { should exist }
     it { should be_running }
   end
-  describe os.family do
-    it { should eq 'debian' }
+  describe azurerm_public_ip(resource_group: 'myResourceGroup2', name: 'myVM') do
+    its('properties.ipAddress') { should cmp '52.142.12.43' }
   end
-  describe nginx do
-    its('version') { should eq '1.14.0' }
-  end
-  describe nginx do
-    its('modules') { should include 'http_ssl' }
-  end
+  
 end
