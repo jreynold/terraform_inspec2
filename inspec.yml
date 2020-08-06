@@ -4,6 +4,6 @@ version: 0.1.0
 inspec_version: '>= 4.6.9'
 depends:
   - name: inspec-azure
-    url: https://github.com/inspec/inspec-azure/archive/v1.17.0.tar.gz
+    git: https://github.com/inspec/inspec-azure.git
 supports:
   - platform: azure
